@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12">
+    <h3 class="mt-5 float-left">
+      Cadastro de
+      <small class="text-muted">Usuário</small>
+    </h3>
+    <form #form="ngForm" (ngSubmit)="form.valid && cadastraUsuario(form)" class="mt-2">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Nome</label>
+          <input type="text" name="nome" id="nome" class="form-control" required placeholder="Digite seu nome" [(ngModel)]="model.nome" #nome="ngModel" [ngClass]="{ 'is-invalid': form.submitted && nome.invalid }">
+        </div>
+        <div class="form-group col-md-2">
+          <label>Idade</label>
+          <input type="text" name="idade" id="idade" class="form-control" required placeholder="Digite sua idade" [(ngModel)]="model.idade" #idade="ngModel" [ngClass]="{ 'is-invalid': form.submitted && idade.invalid }">
+        </div>
+        <div class="form-group col-md-4">
+          <label>E-mail</label>
+          <input type="email" name="email" id="email" class="form-control" required placeholder="Digite seu e-mail" [(ngModel)]="model.email" #email="ngModel" [ngClass]="{ 'is-invalid': form.submitted && email.invalid }">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Cadastrar Usuário</button>
+    </form>
+  </div>
+</div>
