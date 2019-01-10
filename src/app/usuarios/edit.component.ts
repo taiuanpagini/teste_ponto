@@ -25,26 +25,28 @@ export class EditUsuariosComponent implements OnInit {
     this.title.setTitle('Edição de Usuário');
 
     this.ActivatedRoute.params.subscribe(params => {
-      let usuario = JSON.parse(localStorage.getItem("arUsuarios"));
+      let usuarios = JSON.parse(localStorage.getItem("arUsuarios"));
 
-      this.dadosUsuario = usuario[params.id];
+      this.dadosUsuario = usuarios[params.id];
+      this.indice_selecionado = params.id;
+      console.log(this.indice_selecionado);
     })
   }
 
   atualizarUsuario(form) {
-    this.ActivatedRoute.params.subscribe(params => {
 
-      // arUsuarios.push({ nome: form.value.nome, idade: form.value.idade, email: form.value.email })
-      console.log(this.arUsuarios[0]);
-      this.arUsuarios[0] = JSON.stringify({
-        nome: form.value.nome, idade: form.value.idade, email: form.value.email
-      });//Altera o item selecionado na tabela
-      localStorage.setItem("arUsuarios", JSON.stringify(this.arUsuarios));
-    });
-    alert("Informações editadas.")
-    // this.Router.navigate(['']);
+    let usuarios = JSON.parse(localStorage.getItem("arUsuarios"));
+    usuarios[this.indice_selecionado].nome = form.value.nome;
+    usuarios[this.indice_selecionado].idade = form.value.idade;
+    usuarios[this.indice_selecionado].email = form.value.email;
     
+    //Altera o item selecionado na tabela
+    localStorage.setItem("arUsuarios", JSON.stringify(usuarios));
+
+    alert("Informações editadas.");
+    this.Router.navigate(['']);
     return true;
+    
   }
 
 }
